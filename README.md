@@ -11,7 +11,7 @@
 
 **Selected Topics — Computer Science and Information Systems Department · AlMaarefa University**
 
-[Demo flow](#-demo-flow) · [Quick start](#-quick-start) · [Architecture](#%EF%B8%8F-architecture) · [Prompts](#-prompt-design) · [Team](#-team)
+[How to test it](#-how-to-test-the-prototype) · [Get an API key](#-getting-an-anthropic-api-key) · [Demo flow](#-demo-flow) · [Team](#-team)
 
 </div>
 
@@ -45,42 +45,59 @@ The system serves two roles — **students** see their personal dashboard, and *
 
 ---
 
-## 🚀 Quick Start
+## 🚀 How to Test the Prototype
 
-### Option 1 — Run the standalone HTML (easiest)
+### Step 1 — Download `spgp.html`
 
-Just open `spgp.html` in any modern browser. You'll be prompted for your Anthropic API key on first launch.
+Click the file `spgp.html` at the top of this repo, then click the **download** button (or right-click → "Save As").
+
+Alternatively clone the whole repo:
 
 ```bash
-# Clone the repo
 git clone https://github.com/loui9111/spgp-prototype.git
-cd spgp-prototype
-
-# Open in browser (macOS)
-open spgp.html
-
-# Open in browser (Windows / Linux)
-# Just double-click spgp.html
 ```
 
-> 💡 No API key? The app still works using local fallback responses (with a clearly-marked "fallback" badge).
+### Step 2 — Get an Anthropic API key
 
-### Option 2 — Use the JSX component in a React project
+See the next section ⬇️ for full instructions.
 
-```bash
-# In your existing React project
-cp spgp.jsx src/App.jsx
+### Step 3 — Open the file in a browser
 
-# Add your API key to .env
-echo "VITE_ANTHROPIC_API_KEY=sk-ant-your-key-here" > .env
+Just **double-click** `spgp.html`. It opens in any modern browser (Chrome, Edge, Safari, Firefox).
 
-# Run
-npm run dev
-```
+### Step 4 — Paste your API key
 
-### Get an API key
+A popup will appear asking for your key. Paste it and click **Continue**.
 
-Sign up at **[console.anthropic.com](https://console.anthropic.com/)** to get a free API key. ⚠️ **Never commit it to GitHub.**
+> 💡 **No API key?** You can still click **Continue** with the field empty — the app will run using **local fallback responses** (clearly badged as "fallback" so you know they're not from the live AI). The UI itself fully works either way.
+
+---
+
+## 🔑 Getting an Anthropic API Key
+
+The prototype calls Claude Sonnet 4 directly. To use the live AI, you need a free API key from Anthropic. **It takes 2 minutes.**
+
+### Steps:
+
+1. **Go to [console.anthropic.com](https://console.anthropic.com/)**
+2. Click **"Sign Up"** (or **"Sign In"** if you already have an account)
+3. Verify your email and phone number (one-time)
+4. Once logged in, go to **"API Keys"** in the sidebar (or directly: [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys))
+5. Click **"Create Key"**
+6. Give it any name (e.g. `spgp-test`)
+7. **Copy the key** that appears — it starts with `sk-ant-...`
+8. Paste it into the prototype when prompted
+
+### ⚠️ Important security notes
+
+- 🔒 **Never share or commit your API key publicly.** Treat it like a password.
+- 🆓 **Anthropic offers free credits** for new accounts (typically $5 free tier) — more than enough to test this prototype.
+- 💰 If you exceed the free tier, the prototype uses Claude Sonnet 4 which costs roughly **$0.003 per recommendation** — testing the full demo costs less than $0.10.
+- 🛡️ The key entered into `spgp.html` is **stored only in your browser tab** and is sent only to Anthropic's API. It is not sent anywhere else. If you close the tab, the key is gone.
+
+### Already have credits but don't want to use them?
+
+Skip the key entry — the prototype works in **fallback mode** with realistic placeholder responses, so you can still demo the full UI and feature set.
 
 ---
 
@@ -195,7 +212,7 @@ Be supportive and actionable. Do not invent data not in the context.
 | 📚 **Citations required** | Recommendation prompts ask the AI to cite sources |
 | 🛟 **Error handling** | Every API call has a deterministic local fallback — UI never breaks |
 | ⏱️ **Latency display** | Each AI response shows response time and model used |
-| 🚫 **No hardcoded keys** | API key prompted at runtime or loaded from `.env` |
+| 🚫 **No hardcoded keys** | API key prompted at runtime, never committed to the repo |
 | 💚 **Constructive tone** | Prompts explicitly request supportive, non-judgmental language |
 | 🎯 **No data hallucination** | Prompts instruct the model to never invent data not in the context |
 
@@ -226,6 +243,25 @@ This project addresses every criterion of the Selected Topics rubric:
 | Output Formatting | 20% | Structured JSON view + markdown rendering for chat |
 | Teamwork & Presentation | 15% | All four members credited; demo flow documented |
 | Documentation & Testing | 15% | This README + inline code comments + fallback paths |
+
+---
+
+## ❓ Troubleshooting
+
+### "API error: 401" or "Invalid API key"
+Your key is wrong or expired. Generate a new one at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
+
+### "API error: 429" or "Rate limit exceeded"
+You've hit your usage limit. Wait a minute and try again, or top up your credits.
+
+### "Fallback used" badge appears
+Either your key is missing/wrong, or the network failed. The app falls back to local responses so the demo never breaks. Check your key and retry for live AI replies.
+
+### Page is blank when I open spgp.html
+Make sure you opened it in a modern browser (Chrome, Edge, Safari, Firefox latest version). Check the browser console (F12) for errors.
+
+### CORS errors in console
+The HTML uses `anthropic-dangerous-direct-browser-access: true` — this is intentional for demo purposes. In production, calls would go through a backend proxy.
 
 ---
 
