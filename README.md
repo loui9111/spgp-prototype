@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎓 SPGP — AI Student Performance & Grade Prediction hi
+# 🎓 SPGP — AI Student Performance & Grade Prediction
 
 ### *An LLM-powered academic support system that predicts student grades and generates personalised study guidance.*
 
