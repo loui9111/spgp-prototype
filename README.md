@@ -17,7 +17,7 @@
 
 ---
 
-## 📖 About Test
+## 📖 About 
 
 **SPGP** is an AI-driven academic platform that analyses anonymised student performance data and uses **Claude Sonnet 4** to:
 
