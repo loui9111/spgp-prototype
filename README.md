@@ -11,15 +11,17 @@
 
 **Selected Topics — Computer Science and Information Systems Department · AlMaarefa University**
 
+🌐 **Live demo:** [`loui9111.github.io/spgp-prototype/spgp.html`](https://loui9111.github.io/spgp-prototype/spgp.html)
+
 [How to test it](#-how-to-test-the-prototype) · [Get an API key](#-getting-an-anthropic-api-key) · [Demo flow](#-demo-flow) · [Team](#-team)
 
 </div>
 
 ---
 
-## 📖 About 
+## 📖 About
 
-**SPGP** is an AI-driven academic platform that analyses anonymised student performance data and uses **Claude Sonnet 4** to:
+**SPGP** is an AI-driven academic platform that analyses anonymised student performance data and uses **Claude Haiku 4.5** (Anthropic's LLM) to:
 
 - 🎯 Predict each student's final grade category (**High / Moderate / Low / Fail**)
 - 🚨 Detect academic risk factors (low attendance, weak quiz performance, etc.)
@@ -47,63 +49,85 @@ The system serves two roles — **students** see their personal dashboard, and *
 
 ## 🚀 How to Test the Prototype
 
-### Step 1 — Download `spgp.html`
+### Easy way — use the live demo (no install needed)
 
-Click the file `spgp.html` at the top of this repo, then click the **download** button (or right-click → "Save As").
+👉 **Open:** [`https://loui9111.github.io/spgp-prototype/spgp.html`](https://loui9111.github.io/spgp-prototype/spgp.html)
 
-Alternatively clone the whole repo:
+You'll see a popup asking for an Anthropic API key. You have two options:
+
+#### 🟢 Option A — Use live AI (requires API credits)
+1. Get a key from [console.anthropic.com](https://console.anthropic.com/) (see [section below](#-getting-an-anthropic-api-key))
+2. Paste it into the popup → Click **Continue**
+3. Real Claude AI responses will be generated for each course and chat message
+
+#### 🟡 Option B — Use offline mode (no key, no cost)
+1. Click **Skip** in the popup
+2. The app works fully — recommendations and chat are pre-written fallback responses
+3. Every AI response shows a `fallback` badge so you know it's not live AI
+4. **The full UI flow still works** — perfect for quick UI demos
+
+### Run locally instead
 
 ```bash
 git clone https://github.com/loui9111/spgp-prototype.git
+cd spgp-prototype
+# Then double-click spgp.html — works in any modern browser
 ```
 
-### Step 2 — Get an Anthropic API key
-
-See the next section ⬇️ for full instructions.
-
-### Step 3 — Open the file in a browser
-
-Just **double-click** `spgp.html`. It opens in any modern browser (Chrome, Edge, Safari, Firefox).
-
-### Step 4 — Paste your API key
-
-A popup will appear asking for your key. Paste it and click **Continue**.
-
-> 💡 **No API key?** You can still click **Continue** with the field empty — the app will run using **local fallback responses** (clearly badged as "fallback" so you know they're not from the live AI). The UI itself fully works either way.
+> ⚠️ **Note:** Opening `spgp.html` from your local file system (using `file://`) **won't work** for live AI calls — browsers block API requests from local files. Use the **GitHub Pages link** above, or host the file yourself on any HTTPS server.
 
 ---
 
 ## 🔑 Getting an Anthropic API Key
 
-The prototype calls Claude Sonnet 4 directly. To use the live AI, you need a free API key from Anthropic. **It takes 2 minutes.**
+The prototype calls Claude Haiku 4.5 via the Anthropic API.
 
-### Steps:
+### ⚠️ Important: API ≠ Claude.ai subscription
 
-1. **Go to [console.anthropic.com](https://console.anthropic.com/)**
-2. Click **"Sign Up"** (or **"Sign In"** if you already have an account)
-3. Verify your email and phone number (one-time)
-4. Once logged in, go to **"API Keys"** in the sidebar (or directly: [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys))
-5. Click **"Create Key"**
-6. Give it any name (e.g. `spgp-test`)
-7. **Copy the key** that appears — it starts with `sk-ant-...`
-8. Paste it into the prototype when prompted
+Anthropic has **two completely separate billing systems**:
 
-### ⚠️ Important security notes
+| Service | What it is | Used for |
+|---|---|---|
+| **Claude.ai** (Free/Pro/Max) | Chat website + mobile app | Talking to Claude in the chat UI |
+| **Anthropic API** (pay-per-use) | Developer platform | Building apps that call Claude programmatically |
 
-- 🔒 **Never share or commit your API key publicly.** Treat it like a password.
-- 🆓 **Anthropic offers free credits** for new accounts (typically $5 free tier) — more than enough to test this prototype.
-- 💰 If you exceed the free tier, the prototype uses Claude Sonnet 4 which costs roughly **$0.003 per recommendation** — testing the full demo costs less than $0.10.
-- 🛡️ The key entered into `spgp.html` is **stored only in your browser tab** and is sent only to Anthropic's API. It is not sent anywhere else. If you close the tab, the key is gone.
+**A Claude Pro or Max subscription does NOT give you API access.** You need API credits separately.
 
-### Already have credits but don't want to use them?
+### Steps to get an API key
 
-Skip the key entry — the prototype works in **fallback mode** with realistic placeholder responses, so you can still demo the full UI and feature set.
+1. **Go to** [console.anthropic.com](https://console.anthropic.com/)
+2. Sign up or log in (you can use the same account as Claude.ai, but billing is separate)
+3. Verify your phone number if asked (one-time)
+4. Add credits at [Settings → Billing](https://console.anthropic.com/settings/billing)
+   - Minimum: **$5** (lasts thousands of test calls with Haiku 4.5)
+   - Some new accounts get free trial credits
+5. Go to [Settings → API Keys](https://console.anthropic.com/settings/keys)
+6. Click **Create Key** → name it (e.g., `spgp-test`)
+7. **Copy the key** — starts with `sk-ant-...`
+8. Paste into the prototype's popup
+
+### 💰 Cost expectations
+
+Claude Haiku 4.5 pricing (Nov 2025):
+- ~$0.001 per AI recommendation
+- ~$0.0005 per chat message
+- **Full demo ≈ $0.05 — five cents**
+
+A $5 deposit is enough for **months of testing**.
+
+### 🔒 Security warnings
+
+- 🚫 **NEVER share your API key publicly** — treat it like a password
+- 🚫 **NEVER commit it to GitHub** (the code never asks you to do this)
+- ✅ The key entered into the popup is stored **only in your browser tab** — gone when you close it
+- ✅ The key is sent **only to api.anthropic.com**, never anywhere else
+- ⚠️ If you accidentally expose your key (e.g., in a screenshot), **revoke it immediately** at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
 
 ---
 
 ## 🎬 Demo Flow
 
-A complete walkthrough that hits every rubric criterion:
+A complete walkthrough hitting every rubric criterion:
 
 1. **Login screen** → click **"Student View"**
 2. View the 4 course cards — note the colour-coded predictions (green = High, red = Fail)
@@ -122,7 +146,7 @@ A complete walkthrough that hits every rubric criterion:
 ```
 ┌──────────────────────────┐                    ┌──────────────────────┐
 │      React Frontend      │  anonymised data   │   Anthropic API      │
-│  (single-page app)       │ ─────────────────► │   Claude Sonnet 4    │
+│  (single-page app)       │ ─────────────────► │   Claude Haiku 4.5   │
 │                          │                    │                      │
 │  ┌────────────────────┐  │                    └──────────┬───────────┘
 │  │  Student Dashboard │  │                               │
@@ -137,7 +161,7 @@ A complete walkthrough that hits every rubric criterion:
 
 ### Two LLM use cases demonstrated
 
-1. **Structured Output** → AI returns valid JSON matching a strict schema
+1. **Structured Output** → AI returns valid JSON matching a strict schema:
    ```json
    {
      "summary": "...",
@@ -162,7 +186,8 @@ A complete walkthrough that hits every rubric criterion:
 | Styling | Vanilla CSS + custom design system |
 | Icons | [Tabler Icons](https://tabler.io/icons) (web font) |
 | Fonts | Outfit + IBM Plex Mono (Google Fonts) |
-| LLM | Claude Sonnet 4 via [Anthropic Messages API](https://docs.anthropic.com/) |
+| LLM | Claude Haiku 4.5 via [Anthropic Messages API](https://docs.anthropic.com/) |
+| Hosting | GitHub Pages (static, free) |
 
 ---
 
@@ -222,7 +247,7 @@ Be supportive and actionable. Do not invent data not in the context.
 
 ```
 spgp-prototype/
-├── spgp.html       # Standalone demo (open directly in browser)
+├── spgp.html       # Standalone demo (open via GitHub Pages)
 ├── spgp.jsx        # React component (for use in build-based projects)
 ├── README.md       # You're reading it
 ├── LICENSE         # MIT
@@ -248,20 +273,26 @@ This project addresses every criterion of the Selected Topics rubric:
 
 ## ❓ Troubleshooting
 
-### "API error: 401" or "Invalid API key"
-Your key is wrong or expired. Generate a new one at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
+### "I'm having trouble reaching the AI service right now"
+The API call failed and the app is showing a fallback response. Check:
+1. **Did you add credits?** Visit [console.anthropic.com/settings/billing](https://console.anthropic.com/settings/billing) — even with a valid key, **$0 balance returns 400 errors**
+2. **Is your API key valid?** Test it at [console.anthropic.com](https://console.anthropic.com/) by creating a new key
+3. **Are you opening from `file://`?** Use the GitHub Pages URL instead — local files can't make API calls
 
-### "API error: 429" or "Rate limit exceeded"
-You've hit your usage limit. Wait a minute and try again, or top up your credits.
+### "I have Claude Max subscription, why doesn't it work?"
+Claude Max only works on **claude.ai** (the chat website). The API is **billed separately** — see [Getting an API Key](#-getting-an-anthropic-api-key) above.
+
+### "API error: 401" / "Invalid API key"
+Your key is wrong or has been revoked. Generate a new one at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
+
+### "API error: 429" / "Rate limit exceeded"
+You've hit your usage limit. Wait a minute and try again.
 
 ### "Fallback used" badge appears
-Either your key is missing/wrong, or the network failed. The app falls back to local responses so the demo never breaks. Check your key and retry for live AI replies.
+Either your key is missing/wrong, your account is out of credits, or the network failed. The app falls back to local responses so the demo never breaks.
 
-### Page is blank when I open spgp.html
-Make sure you opened it in a modern browser (Chrome, Edge, Safari, Firefox latest version). Check the browser console (F12) for errors.
-
-### CORS errors in console
-The HTML uses `anthropic-dangerous-direct-browser-access: true` — this is intentional for demo purposes. In production, calls would go through a backend proxy.
+### Page is blank / weird styling
+Make sure you opened it in a **modern browser** (Chrome, Edge, Safari, Firefox latest). Try a hard refresh (Ctrl+Shift+R / Cmd+Shift+R).
 
 ---
 
