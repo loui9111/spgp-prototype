@@ -125,7 +125,8 @@ A $5 deposit is enough for **months of testing**.
 
 ---
 
-## 🎬 Demo Flow
+## 🎬 Demo Flow and video
+https://youtu.be/MmTBxpLNTDo
 
 A complete walkthrough hitting every rubric criterion:
 
