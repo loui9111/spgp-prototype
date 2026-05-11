@@ -178,7 +178,7 @@ A complete walkthrough hitting every rubric criterion:
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stacks
 
 | Layer | Technology |
 |---|---|
