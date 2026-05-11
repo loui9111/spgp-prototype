@@ -306,7 +306,7 @@ Make sure you opened it in a **modern browser** (Chrome, Edge, Safari, Firefox l
 | **Abdulaziz Alhumaid** | Data modelling & state management |
 | **Mohammed Almarzouk** | Output formatting & error handling |
 
-**Supervisor:** Dr. Noha Alharbi
+**Supervisor:** Dr. Mohammed Al Gabri
 
 ---
 
